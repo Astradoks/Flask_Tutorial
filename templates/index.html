@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+<body>
+    <br>
+    <div class="container shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="container">
+            <p class="text-center fs-1">Filtrador de contratos por fecha</p>
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <div class="card">
+                    <div class="card-header">Contratos</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Contrato</th>
+                                    <th scope="col">Monto</th>
+                                    <th scope="col">Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for con in contracts %}
+                                    <tr>
+                                        <th scope="row">{{con.contrato_id}}</th>
+                                        <th scope="row">{{con.clienteContrato.cliente_nombre}}</th>
+                                        <th scope="row">{{con.contrato}}</th>
+                                        <th scope="row">{{con.contrato_monto}}</th>
+                                        <th scope="row">{{con.contrato_fecha}}</th>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <form action="/" method="POST">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label for="initialDate">Ingrese una fecha de inicio</label>
+                            <input id="initialDate" name="initialDate" type="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-5">
+                            <label for="endDate">Ingrese una fecha de fin</label>
+                            <input id="endDate" name="endDate" type="date" class="form-control" required>
+                        </div>
+                        <div class="col-md-2 d-grid">
+                            <br>
+                            <input type="submit" value="Buscar" class="btn btn-primary">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="shadow p-3 mb-5 bg-white rounded">
+                <div class="card">
+                    <div class="card-header">Contratos Filtrados</div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Monto</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ficon in filteredContracts %}
+                                    <tr>
+                                        <th scope="row">{{ficon[0]}}</th>
+                                        <th scope="row">{{ficon[1]}}</th>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
